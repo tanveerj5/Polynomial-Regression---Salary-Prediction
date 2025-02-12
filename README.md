@@ -7,76 +7,30 @@ The dataset used is **Position_Salaries.csv**, containing:
 - **Position Level (`X`)**: The independent variable.
 - **Salary (`y`)**: The dependent variable (target to predict).
 
-## 📌 Dependencies
-Ensure you have the required Python libraries installed:
-```bash
-pip install numpy pandas matplotlib scikit-learn
-```
+## 📌 Overview of Code
+The implementation follows these key steps:
 
-## 📜 Code Implementation
-### 1️⃣ Importing Libraries
-```python
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-```
+1. **Importing Libraries**  
+   - Essential libraries such as `pandas`, `numpy`, and `matplotlib` for data handling and visualization.
+   - `sklearn.preprocessing` and `sklearn.linear_model` for feature transformation and model training.
 
-### 2️⃣ Loading Dataset
-```python
-dataset = pd.read_csv('Position_Salaries.csv')
-X = dataset.iloc[:, 1:-1].values  # Extract independent variable
-y = dataset.iloc[:, -1].values    # Extract dependent variable
-```
+2. **Loading the Dataset**  
+   - Reads the dataset into a DataFrame.
+   - Extracts the relevant features (`X`) and target variable (`y`).
 
-### 3️⃣ Training the Polynomial Regression Model
-```python
-poly_reg = PolynomialFeatures(degree=4)
-X_poly = poly_reg.fit_transform(X)
-line_reg = LinearRegression()
-line_reg.fit(X_poly, y)
-```
+3. **Training the Polynomial Regression Model**  
+   - Converts the input `X` into polynomial features using `PolynomialFeatures(degree=4)`.
+   - Fits a `LinearRegression` model to these transformed features.
+   - Predicts the salaries based on the trained model.
 
-### 4️⃣ Predictions
-```python
-y_predict = line_reg.predict(X_poly)
-```
+4. **Visualizing the Results**  
+   - Creates a scatter plot of the actual data points.
+   - Plots the polynomial regression curve to visualize the model fit.
+   - Uses a finer resolution (`X_grid`) for a smoother curve.
 
-### 5️⃣ Visualization
-#### 📊 Basic Polynomial Regression Curve
-```python
-plt.scatter(X, y, color='red')
-plt.plot(X, y_predict, color='blue')
-plt.title('Salary Expectation')
-plt.xlabel('Position Level')
-plt.ylabel('Salary')
-plt.show()
-```
-#### 📊 Higher Resolution Curve
-```python
-X_grid = np.arange(min(X), max(X), 0.1).reshape(-1, 1)
-plt.scatter(X, y, color='red')
-plt.plot(X_grid, line_reg.predict(poly_reg.transform(X_grid)), color='blue')
-plt.title('Salary Expectation (Higher Resolution)')
-plt.xlabel('Position Level')
-plt.ylabel('Salary')
-plt.show()
-```
-
-### 6️⃣ Model Evaluation Metrics
-```python
-mse = mean_squared_error(y, y_predict)
-rmse = np.sqrt(mse)
-mae = mean_absolute_error(y, y_predict)
-r2 = r2_score(y, y_predict)
-
-print(f'MSE: {mse:.4f}')
-print(f'RMSE: {rmse:.4f}')
-print(f'MAE: {mae:.4f}')
-print(f'R² Score: {r2:.4f}')
-```
+5. **Making Predictions**  
+   - Uses the trained model to predict salaries for given position levels.
+   - Evaluates the model using error metrics.
 
 ## 📌 Why R² Score is Better?
 The **R² score (coefficient of determination)** is a key metric because it measures how well the model explains the variance in the dependent variable (`y`).
@@ -140,4 +94,3 @@ Polynomial Regression is a **special case of Linear Regression** where we **tran
 
 3. **Non-Linear Data Fit, but a Linear Model Structure:**  
    - The polynomial regression equation allows for modeling **non-linear patterns**, but the model is still mathematically considered **linear** in terms of parameters.
-
