@@ -94,3 +94,23 @@ Polynomial Regression is a **special case of Linear Regression** where we **tran
 
 3. **Non-Linear Data Fit, but a Linear Model Structure:**  
    - The polynomial regression equation allows for modeling **non-linear patterns**, but the model is still mathematically considered **linear** in terms of parameters.
+
+## 📊 Metric Score  
+The model's performance is evaluated using a metric score, showcasing its accuracy and effectiveness. 📈✅ 
+
+![Metric Score](https://github.com/tanveerj5/Polynomial-Regression---Salary-Prediction/blob/main/score.png)  
+
+## ❌ Why the Linear Model is Not Good for This Dataset  
+The linear model fails to capture the complex relationship in the data, leading to poor predictions. 🚫📉  
+
+![Linear Model Issue](https://github.com/tanveerj5/Polynomial-Regression---Salary-Prediction/blob/main/linear%20model.png)  
+
+## 🔍 Test Visualization  
+A test visualization demonstrates how the model predicts values, highlighting its generalization ability. 📊🔎  
+
+![Test Visualization](https://github.com/tanveerj5/Polynomial-Regression---Salary-Prediction/blob/main/test%20resolution%20result.png)  
+
+## 🎯 Smooth Visualization  
+A high-resolution curve provides a clearer and more refined representation of the model’s predictions. 📈✨  
+
+![Smooth Visualization](https://github.com/tanveerj5/Polynomial-Regression---Salary-Prediction/blob/main/high%20resolution%20curve.png)  
