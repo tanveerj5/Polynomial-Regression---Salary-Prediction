@@ -78,12 +78,6 @@ print(f'MAE: {mae:.4f}')
 print(f'R² Score: {r2:.4f}')
 ```
 
-## 🚀 Predicting a New Salary
-```python
-new_salary_prediction = line_reg.predict(poly_reg.transform([[6.5]]))
-print(f'Predicted Salary for Level 6.5: {new_salary_prediction[0]:.2f}')
-```
-
 ## 📌 Why R² Score is Better?
 The **R² score (coefficient of determination)** is a key metric because it measures how well the model explains the variance in the dependent variable (`y`).
 
@@ -129,24 +123,21 @@ Since polynomial regression introduces multiple feature transformations (e.g., `
 3. **Mathematical Justification**  
    - By computing the second derivative of the loss function (`d²MSE/d(degree)²`), we locate the saddle point where the marginal benefit of increasing polynomial complexity diminishes.
 
-### Implementation Example
-```python
-from sympy import symbols, diff, solve
+## 📌 Why is it Called Polynomial Linear Regression?
+Polynomial Regression is a **special case of Linear Regression** where we **transform the input features** to a polynomial form. The key reason it is still considered **linear regression** lies in the **linear relationship between the coefficients and the transformed features**, not in the shape of the data.
 
-degree = symbols('degree')
-mse_expr = some_function_of_degree  # Replace with empirical MSE curve
-second_derivative = diff(mse_expr, degree, 2)
-saddle_point = solve(second_derivative, degree)
-print(f'Optimal Polynomial Degree: {saddle_point}')
-```
+### 📌 **Key Points:**
+1. **Linear in Coefficients:**  
+   - A polynomial regression model of degree **d** has the form:  
+     \[
+     y = \theta_0 + \theta_1 X + \theta_2 X^2 + \theta_3 X^3 + ... + \theta_d X^d
+     \]
+   - Despite `X², X³, ...` being non-linear transformations, the model remains **linear in parameters** (`θ` values).
 
-## 📌 Key Takeaways
-- **Polynomial Regression captures non-linear relationships** between independent and dependent variables.
-- Higher-degree polynomials may lead to **overfitting**, so tuning the degree is crucial.
-- **Evaluation metrics (MSE, RMSE, MAE, R² Score)** help assess model performance.
-- **Saddle points** provide a mathematical approach to choosing the optimal polynomial degree.
+2. **Same Optimization as Linear Regression:**  
+   - The model is solved using **Ordinary Least Squares (OLS)**, the same way as standard **Linear Regression**.
+   - No need for iterative approaches like **Gradient Descent** unless working with **large datasets**.
 
-## 📌 Future Improvements
-- Hyperparameter tuning (finding the optimal degree).
-- Cross-validation for better generalization.
-- Adding more features to enhance predictions.
+3. **Non-Linear Data Fit, but a Linear Model Structure:**  
+   - The polynomial regression equation allows for modeling **non-linear patterns**, but the model is still mathematically considered **linear** in terms of parameters.
+
